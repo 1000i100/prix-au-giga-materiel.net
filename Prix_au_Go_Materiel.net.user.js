@@ -19,13 +19,14 @@ $(document).ready(function(){
 	});
 	$('body').append('<style>.prixAuGiga{font-size:12px;font-weight:normal;}</style>')
 	function gigaFinder(jQNode){
+		if($('#page',jQNode).length) throw 'Trop haut sans résultat !';
 		var giga = 0;
 		jQNode.text().replace(/([0-9]+) Go/,function(all, number){
-			if(giga) throw 'on est remonté trop haut !';
+			if(giga) throw 'Trop haut avec plusieurs résultats !';
 			giga = parseInt(number);
 		});
 		// multi disque
-		jQNode.text().replace(/([0-9]+) x [0-9To ]+ [(].([0-9]+) Go[)]./,function(all, qty, number){
+		jQNode.text().replace(/([0-9]+) x [0-9To ]+ [(]([0-9]+) Go[)]/,function(all, qty, number){
 			giga = qty * number;
 		});
 		
