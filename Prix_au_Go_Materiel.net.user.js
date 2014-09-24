@@ -17,11 +17,11 @@ $(document).ready(function(){
 			console.log(e);
 		}
 	});
-	$('body').append('<style>.prixAuGiga{font-size:12px;font-weight:normal;}</style>')
+	$('body').append('<style>.prixAuGiga{font-size:70%;font-weight:normal;}</style>')
 	function gigaFinder(jQNode){
 		if($('#page',jQNode).length) throw 'Trop haut sans résultat !';
 		var giga = 0;
-		jQNode.text().replace(/([0-9]+) Go/,function(all, number){
+		jQNode.text().replace(/([0-9]+) Go/g,function(all, number){
 			if(giga) throw 'Trop haut avec plusieurs résultats !';
 			giga = parseInt(number);
 		});
