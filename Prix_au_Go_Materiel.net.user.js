@@ -6,9 +6,7 @@
 // @grant       none
 // @require     //www.materiel.net/js/jquery/lib/jquery.min.js
 // ==/UserScript==
-console.log('debut');
 $(document).ready(function(){
-	console.log('jQuery executé');
 	$('.Price').each(function(){
 		try{
 			var giga = gigaFinder($(this));
@@ -23,8 +21,14 @@ $(document).ready(function(){
 	function gigaFinder(jQNode){
 		var giga = 0;
 		jQNode.text().replace(/([0-9]+) Go/,function(all, number){
+			if(giga) throw 'on est remonté trop haut !';
 			giga = parseInt(number);
 		});
+		// multi disque
+		jQNode.text().replace(/([0-9]+) x [0-9To ]+ [(].([0-9]+) Go[)]./,function(all, qty, number){
+			giga = qty * number;
+		});
+		
 		if(!giga) return gigaFinder(jQNode.parent());
 		else return giga;
 	}
