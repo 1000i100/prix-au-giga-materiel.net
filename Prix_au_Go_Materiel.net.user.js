@@ -7,7 +7,7 @@
 // @require     //www.materiel.net/js/jquery/lib/jquery.min.js
 // ==/UserScript==
 $(document).ready(function(){
-	$('.Price').each(function(){
+	$('.Price, .price').each(function(){
 		try{
 			var giga = gigaFinder($(this));
 			var prix = priceFinder($(this));
@@ -17,7 +17,7 @@ $(document).ready(function(){
 			console.log(e);
 		}
 	});
-	$('body').append('<style>.prixAuGiga{font-size:70%;font-weight:normal;}</style>')
+	$('body').append('<style>.prixAuGiga{font-size:75%;font-weight:normal;}</style>')
 	function gigaFinder(jQNode){
 		if($('#page',jQNode).length) throw 'Trop haut sans résultat !';
 		var giga = 0;
