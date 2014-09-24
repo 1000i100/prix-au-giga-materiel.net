@@ -29,7 +29,7 @@ function gigaFinder(jQNode){
 	if($('#page',jQNode).length) throw 'Trop haut sans résultat !';
 	var giga = 0;
 	jQNode.text().replace(/([0-9]+) Go/g,function(all, number){
-		if(giga) throw 'Trop haut avec plusieurs résultats !';
+		if(giga && jQNode.attr('id')!='prod') throw 'Trop haut avec plusieurs résultats !';
 		giga = parseInt(number);
 	});
 	// multi disque
