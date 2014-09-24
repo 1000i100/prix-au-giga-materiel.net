@@ -30,7 +30,7 @@ function gigaFinder(jQNode){
 	var giga = 0;
 	jQNode.text().replace(/([0-9]+) Go/g,function(all, number){
 		if(giga && jQNode.attr('id')!='prod') throw 'Trop haut avec plusieurs résultats !';
-		giga = parseInt(number);
+		if(!giga) giga = parseInt(number);
 	});
 	// multi disque
 	jQNode.text().replace(/([0-9]+) x [0-9To ]+ [(]([0-9]+) Go[)]/,function(all, qty, number){
